@@ -1,6 +1,9 @@
 package com.zsl.template.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * PersonInfo
@@ -9,6 +12,9 @@ import lombok.Data;
  * @date 2021/7/25 14:13
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class PersonInfo {
     private String name;
 
