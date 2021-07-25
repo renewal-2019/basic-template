@@ -16,16 +16,8 @@ public class OpenAPIConfig {
     @Bean
     public GroupedOpenApi helloApi() {
         return GroupedOpenApi.builder()
-                .group("hello")
-                .pathsToMatch("/hello/**")
-                .build();
-    }
-
-    @Bean
-    public GroupedOpenApi restApi() {
-        return GroupedOpenApi.builder()
-                .group("rest-api")
-                .pathsToMatch("/rest/**")
+                .group("test")
+                .pathsToMatch("/test/**")
                 .build();
     }
 }

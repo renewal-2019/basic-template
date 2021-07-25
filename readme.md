@@ -17,3 +17,10 @@
 当鼠标操作有对应的快捷键时,会提示
 ```
 
+# 加解密相关
+```
+在加密jar包所在文件位置执行命令:
+java -cp jasypt-1.9.2.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input=[明文] password=[密钥] algorithm=PBEWithMD5AndDES
+开发过程中密钥存储在idea的环境变量中
+```
+

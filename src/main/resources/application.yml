@@ -3,7 +3,16 @@ server:
   servlet:
     context-path: /api/v1
 
+# 解密所需的密钥
+jasypt:
+  encryptor:
+    password: ${saltvalue}
+
+douding: ENC(LRKNFQvlMD45EiDz4JUSGQ==)
+
 spring:
+  profiles:
+    active: dev
   # jackson的配置方式有两种,一种是yml 一种是构建bean,当配置文件的方式无法满足时,可以通过构建bean来实现
   jackson:
     #日期类型格式化
