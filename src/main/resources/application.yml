@@ -4,6 +4,23 @@ server:
     context-path: /api/v1
 
 spring:
+  # jackson的配置方式有两种,一种是yml 一种是构建bean,当配置文件的方式无法满足时,可以通过构建bean来实现
   jackson:
+    #日期类型格式化
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+    serialization:
+      #格式化输出，通常为了节省网络流量设置为false。因为格式化之后会带有缩进，方便阅读。
+      indent_output: false
+      #某些类对象无法序列化的时候，是否报错
+      fail_on_empty_beans: false
+    #设置空如何序列化，见下文代码方式详解
+    defaultPropertyInclusion: NON_EMPTY
+    deserialization:
+      #对象json中有不存在的属性时候，是否报错
+      fail_on_unknown_properties: false
+    parser:
+      #允许出现特殊字符和转义符
+      allow_unquoted_control_chars: true
+      #允许出现单引号
+      allow_single_quotes: true
