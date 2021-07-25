@@ -1,10 +1,9 @@
 package com.zsl.template.controller;
 
 import com.zsl.template.common.AjaxResponse;
+import com.zsl.template.entity.PersonInfo;
 import com.zsl.template.service.PersonService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -28,5 +27,10 @@ public class HelloController {
     @GetMapping("/person")
     public AjaxResponse getPerson() {
         return AjaxResponse.success(personService.getPersonInfo());
+    }
+
+    @PostMapping("/save")
+    public AjaxResponse savePerson(@RequestBody PersonInfo personInfo){
+        return AjaxResponse.success(personInfo);
     }
 }

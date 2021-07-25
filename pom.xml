@@ -44,6 +44,13 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- open api 构建接口文档 -->
+        <!-- 查看路径 http://localhost:8080/api/v1/swagger-ui.html  -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.4.0</version>
+        </dependency>
     </dependencies>
 
     <build>
