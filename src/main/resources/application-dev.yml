@@ -1,1 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/testdb?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: ENC(WeVAlCoH2QAMHRmcd8Sw6g==)
+    password: ENC(pcRBtYWh9Net/0eIads16NnEMfet2wWT)
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml

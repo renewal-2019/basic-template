@@ -20,4 +20,12 @@ public class OpenAPIConfig {
                 .pathsToMatch("/test/**")
                 .build();
     }
+
+    @Bean
+    public GroupedOpenApi articleApi() {
+        return GroupedOpenApi.builder()
+                .group("article")
+                .pathsToMatch("/article/**")
+                .build();
+    }
 }
