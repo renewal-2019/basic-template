@@ -30,14 +30,15 @@ public class AjaxResponse<T> {
      */
     private T data;
 
-    private AjaxResponse(){}
+    private AjaxResponse() {
+    }
 
     /**
      * 请求成功的响应，不带查询数据（用于删除、修改、新增接口）
      *
      * @return
      */
-    public static AjaxResponse success(){
+    public static AjaxResponse success() {
         AjaxResponse ajaxResponse = new AjaxResponse();
         ajaxResponse.setOk(true);
         ajaxResponse.setCode(200);
@@ -51,7 +52,7 @@ public class AjaxResponse<T> {
      * @param data
      * @return
      */
-    public static <T> AjaxResponse success(T data){
+    public static <T> AjaxResponse success(T data) {
         AjaxResponse ajaxResponse = new AjaxResponse();
         ajaxResponse.setOk(true);
         ajaxResponse.setCode(200);
@@ -67,12 +68,31 @@ public class AjaxResponse<T> {
      * @param message
      * @return
      */
-    public static <T> AjaxResponse success(T data,String message){
+    public static <T> AjaxResponse success(T data, String message) {
         AjaxResponse ajaxResponse = new AjaxResponse();
         ajaxResponse.setOk(true);
         ajaxResponse.setCode(200);
         ajaxResponse.setMessage(message);
         ajaxResponse.setData(data);
         return ajaxResponse;
+    }
+
+    //请求出现异常时的响应数据封装
+    public static AjaxResponse error(CustomException e) {
+        AjaxResponse resultBean = new AjaxResponse();
+        resultBean.setOk(false);
+        resultBean.setCode(e.getCode());
+        resultBean.setMessage(e.getMessage());
+        return resultBean;
+    }
+
+    //请求出现异常时的响应数据封装
+    public static AjaxResponse error(CustomExceptionType customExceptionType,
+                                     String errorMessage) {
+        AjaxResponse resultBean = new AjaxResponse();
+        resultBean.setOk(false);
+        resultBean.setCode(customExceptionType.getCode());
+        resultBean.setMessage(errorMessage);
+        return resultBean;
     }
 }

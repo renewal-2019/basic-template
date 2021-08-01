@@ -30,7 +30,7 @@ public class HelloController {
     }
 
     @PostMapping("/save")
-    public AjaxResponse savePerson(@RequestBody PersonInfo personInfo){
+    public AjaxResponse savePerson(@RequestBody PersonInfo personInfo) {
         return AjaxResponse.success(personInfo);
     }
 }
