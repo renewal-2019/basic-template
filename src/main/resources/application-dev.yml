@@ -5,5 +5,8 @@ spring:
     password: ENC(pcRBtYWh9Net/0eIads16NnEMfet2wWT)
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+logging:
+  config: classpath:log4j2-dev.xml
+
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
