@@ -12,11 +12,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 public class RedisTest {
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Test
     void test() {
-        redisTemplate.opsForValue().set("try", "666");
+        redisTemplate.opsForValue().set("asd", "666");
         Object aTry = redisTemplate.opsForValue().get("try");
         System.out.println((String) aTry);
     }
