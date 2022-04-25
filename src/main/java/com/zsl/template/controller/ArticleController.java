@@ -1,6 +1,12 @@
 package com.zsl.template.controller;
 
 
+import com.zsl.template.entity.Article;
+import com.zsl.template.entity.PersonInfo;
+import com.zsl.template.service.ArticleService;
+import com.zsl.template.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -16,5 +22,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
-
 }
