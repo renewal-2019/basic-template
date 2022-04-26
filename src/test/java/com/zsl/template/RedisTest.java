@@ -5,11 +5,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zsl.template.entity.PersonInfo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 // 需要注入bean
@@ -20,6 +24,9 @@ public class RedisTest {
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
+
+    @Autowired
+    private RedissonClient redissonClient;
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -32,9 +39,22 @@ public class RedisTest {
 //        Object aTry = redisTemplate.opsForValue().get("asd");
 //        System.out.println();
 
-        stringRedisTemplate.opsForValue().set("try",objectMapper.writeValueAsString(personInfo));
+        stringRedisTemplate.opsForValue().set("try", objectMapper.writeValueAsString(personInfo));
         String aTry = stringRedisTemplate.opsForValue().get("try");
         PersonInfo personInfo1 = objectMapper.readValue(aTry, PersonInfo.class);
         System.out.println(personInfo1.getName());
+    }
+
+    @Test
+    void testRedisson() throws InterruptedException {
+        RLock lock = redissonClient.getLock("lock");
+        boolean b = lock.tryLock(1, 10, TimeUnit.SECONDS);
+        if (b) {
+            try {
+                System.out.println("执行业务");
+            } finally {
+                lock.unlock();
+            }
+        }
     }
 }
