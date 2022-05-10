@@ -1,8 +1,6 @@
 package com.zsl.template;
 
-import com.zsl.template.controller.HelloController;
 import com.zsl.template.entity.PersonInfo;
-import com.zsl.template.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -37,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 // 会注入所有的bean,重量级
 //@SpringBootTest
 // 只注入指定的bean,轻量级
-@WebMvcTest(HelloController.class)
+//@WebMvcTest(HelloController.class)
 // 需要注入bean
 @ExtendWith(SpringExtension.class)
 public class PersonInfoTest2 {
@@ -46,8 +44,8 @@ public class PersonInfoTest2 {
     private MockMvc mockMvc;
 
     // 注入mockBean
-    @MockBean
-    private PersonService personService;
+//    @MockBean
+//    private PersonService personService;
 
     @Test
     public void getPersonInfo() throws Exception {
@@ -55,7 +53,7 @@ public class PersonInfoTest2 {
 
         // 打桩
         // 当执行personService.getPersonInfo()方法时 ,直接返回指定的结果
-        when(personService.getPersonInfo()).thenReturn(PersonInfo.builder().name("zsl").age(18).build());
+//        when(personService.getPersonInfo()).thenReturn(PersonInfo.builder().name("zsl").age(18).build());
 
         // 通过mock对象执行http请求
         MvcResult mvcResult = mockMvc.perform(

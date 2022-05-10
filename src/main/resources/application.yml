@@ -12,7 +12,7 @@ douding: ENC(LRKNFQvlMD45EiDz4JUSGQ==)
 
 spring:
   profiles:
-    active: dev
+    active: prod
   # jackson的配置方式有两种,一种是yml 一种是构建bean,当配置文件的方式无法满足时,可以通过构建bean来实现
   jackson:
     #日期类型格式化

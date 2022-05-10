@@ -2,14 +2,15 @@ package com.zsl.template.controller;
 
 
 import com.zsl.template.entity.Article;
-import com.zsl.template.entity.PersonInfo;
 import com.zsl.template.service.ArticleService;
-import com.zsl.template.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -22,4 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
+    @Autowired
+    private ArticleService articleService;
+
+    @GetMapping()
+    public ResponseEntity<List<Article>> getList() {
+        List<Article> list = articleService.list();
+        return ResponseEntity.ok(list);
+    }
 }

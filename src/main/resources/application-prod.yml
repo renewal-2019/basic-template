@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.1.103:3306/prod?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 940930zsl
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: 192.168.1.103
+    port: 6379
+    password: 0930zsl
+    database: 0
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8 #最大空闲连接
+        min-idle: 1 #最小空闲连接
+        max-wait: 100ms #连接等待时间
+
+logging:
+  config: classpath:log4j2-dev.xml
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
