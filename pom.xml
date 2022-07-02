@@ -112,6 +112,13 @@
             <artifactId>redisson</artifactId>
             <version>3.13.6</version>
         </dependency>
+
+        <!--rabbitmq 依赖客户端-->
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>5.8.0</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -17,7 +17,7 @@ spring:
         max-wait: 100ms #连接等待时间
 
 logging:
-  config: classpath:log4j2-dev.xml
+  config: classpath:log4j2-spring.xml
 
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
