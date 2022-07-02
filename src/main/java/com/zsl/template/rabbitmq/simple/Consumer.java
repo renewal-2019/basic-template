@@ -21,6 +21,8 @@ public class Consumer {
             // 业务层消费消息
             String message = new String(delivery.getBody());
             System.out.println(message);
+            // 1.消息标记tag 2.false代表只应答接收到的那个消息 true代表应答所有消息包括传递来的消息
+            channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
         };
 
         //取消消费的一个回调接口 如在消费的时候队列被删除掉了
@@ -34,6 +36,7 @@ public class Consumer {
          * 2.消费成功之后是否要自动应答 true 代表自动应答 false 手动应答
          * 3.消费者未成功消费的回调
          */
-        channel.basicConsume(QUEUE_NAME, true, deliverCallback, cancelCallback);
+        boolean autoAck = false;
+        channel.basicConsume(QUEUE_NAME, autoAck, deliverCallback, cancelCallback);
     }
 }
