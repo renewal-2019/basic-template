@@ -3,7 +3,6 @@ package com.zsl.template.rabbitmq.simple;
 import com.rabbitmq.client.*;
 import com.zsl.template.util.RabbitMQFactoryGenerator;
 
-import java.util.Calendar;
 import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 
