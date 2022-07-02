@@ -3,6 +3,7 @@ package com.zsl.template.rabbitmq.simple;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.MessageProperties;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -11,7 +12,7 @@ import java.util.concurrent.TimeoutException;
 @Slf4j
 public class Producer {
     // 队列名称
-    public static final String QUEUE_NAME = "test";
+    public static final String QUEUE_NAME = "test2";
 
     public static void main(String[] args) throws IOException, TimeoutException {
         ConnectionFactory connectionFactory = new ConnectionFactory();
@@ -31,7 +32,7 @@ public class Producer {
          * 4.是否自动删除 最后一个消费者端开连接以后 该队列是否自动删除 true 自动删除
          * 5.其他参数
          */
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        channel.queueDeclare(QUEUE_NAME, true, false, false, null);
         // 发送消息
         String message = "Hello world!";
         /**
@@ -41,7 +42,7 @@ public class Producer {
          * 3.其他的参数信息
          * 4.发送消息的消息体
          */
-        channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+        channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
         System.out.println("消息发送完毕。");
     }
 }
