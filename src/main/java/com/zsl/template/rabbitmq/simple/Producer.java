@@ -14,7 +14,7 @@ public class Producer {
     // 队列名称
     public static final String QUEUE_NAME = "test2";
 
-    public static void main(String[] args) throws IOException, TimeoutException {
+    public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
         ConnectionFactory connectionFactory = new ConnectionFactory();
         connectionFactory.setHost("192.168.1.103");
         connectionFactory.setUsername("jojo");
@@ -23,6 +23,8 @@ public class Producer {
         Connection connection = connectionFactory.newConnection();
         // 获取通道
         Channel channel = connection.createChannel();
+        // 开启发布确认
+        channel.confirmSelect();
         // 通过通道创建队列
         /**
          * 生成一个队列
@@ -33,6 +35,8 @@ public class Producer {
          * 5.其他参数
          */
         channel.queueDeclare(QUEUE_NAME, true, false, false, null);
+        // 阻塞
+        channel.waitForConfirms();
         // 发送消息
         String message = "Hello world!";
         /**
