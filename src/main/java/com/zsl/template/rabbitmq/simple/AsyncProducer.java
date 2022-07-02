@@ -47,6 +47,7 @@ public class AsyncProducer {
 
         // 批量发送消息
         for (int i = 0; i < 1000; i++) {
+            Thread.sleep(100);
             String message = "Hello world!" + i;
             channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
             // 1.记录所有发送的消息

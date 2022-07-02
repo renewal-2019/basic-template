@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Consumer {
-    private final static String QUEUE_NAME = "test";
+    private final static String QUEUE_NAME = "ASYNC_test";
 
     public static void main(String[] args) throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
