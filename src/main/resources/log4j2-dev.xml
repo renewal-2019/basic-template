@@ -42,6 +42,6 @@
         <!--spring日志-->
         <Logger name="org.springframework" level="info"/>
         <!-- mybatis日志 -->
-        <Logger name="com.mybatis" level="debug"/>
+        <Logger name="com.mybatis" level="info"/>
     </Loggers>
 </configuration>

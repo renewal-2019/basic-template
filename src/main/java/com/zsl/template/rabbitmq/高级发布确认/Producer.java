@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.PostConstruct;
-
 @RestController
 @RequestMapping("/confirm")
 @Slf4j
@@ -25,10 +23,5 @@ public class Producer {
         CorrelationData correlationData1 = new CorrelationData("1");
         String routingKey = "key1";
         rabbitTemplate.convertAndSend(CONFIRM_EXCHANGE_NAME, routingKey, message + routingKey, correlationData1);
-
-        CorrelationData correlationData2 = new CorrelationData("2");
-        routingKey = "key2";
-        rabbitTemplate.convertAndSend(CONFIRM_EXCHANGE_NAME, routingKey, message + routingKey, correlationData2);
-        log.info("发送消息内容:{}", message);
     }
 }
