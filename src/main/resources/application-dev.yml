@@ -15,6 +15,11 @@ spring:
         max-idle: 8 #最大空闲连接
         min-idle: 1 #最小空闲连接
         max-wait: 100ms #连接等待时间
+  rabbitmq:
+    host: 192.168.1.103
+    port: 5672
+    username: jojo
+    password: 0930zsl
 
 logging:
   config: classpath:log4j2-dev.xml
