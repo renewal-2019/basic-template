@@ -27,6 +27,8 @@ spring:
     listener:
       direct:
         acknowledge-mode: manual
+        # 设置消费者一次拉取多少条消息，可用于消费贷限流
+        prefetch: 10
 
 logging:
   config: classpath:log4j2-spring.xml

@@ -1,6 +1,7 @@
 package com.zsl.template.rabbitmq.高级发布确认;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class Producer {
     public static final String CONFIRM_EXCHANGE_NAME = "confirm.exchange";
+    public static final String TTL_EXCHANGE_NAME = "ttl.exchange";
+
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
@@ -23,5 +26,13 @@ public class Producer {
         CorrelationData correlationData1 = new CorrelationData("1");
         String routingKey = "key1";
         rabbitTemplate.convertAndSend(CONFIRM_EXCHANGE_NAME, routingKey, message + routingKey, correlationData1);
+
+        // 消息后置处理器
+        MessagePostProcessor messagePostProcessor = (msg) -> {
+            // 设置消息过期时间
+            msg.getMessageProperties().setExpiration("5000");
+            return msg;
+        };
+        rabbitTemplate.convertAndSend(TTL_EXCHANGE_NAME, "ttl", message + routingKey, messagePostProcessor);
     }
 }
