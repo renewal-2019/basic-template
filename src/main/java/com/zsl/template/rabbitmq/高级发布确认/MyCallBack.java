@@ -42,6 +42,9 @@ public class MyCallBack implements RabbitTemplate.ConfirmCallback, RabbitTemplat
 
     /**
      * 交换机无法路由时的回调方法
+     * 交换机处理无法接收的消息的两种方式：
+     * 1.直接丢弃
+     * 2.将失败消息返回给发送方
      *
      * @param returnedMessage
      */
